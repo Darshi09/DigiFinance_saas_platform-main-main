@@ -10,8 +10,12 @@ export function convertToRupees(amount: number) {
 
 // Format currency in Indian Rupees (₹)
 export function formatCurrency(amount: number) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
+  if (amount === null || amount === undefined) return "No Balance";
+
+  let formatted = new Intl.NumberFormat("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(amount);
+
+  return `Rs. ${formatted}`;
 }
