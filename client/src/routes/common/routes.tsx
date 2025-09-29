@@ -8,7 +8,6 @@ import Settings from "@/pages/settings";
 import Account from "@/pages/settings/account";
 import Appearance from "@/pages/settings/appearance";
 import Billing from "@/pages/settings/billing";
-import path from "path";
 import Payment from "@/pages/settings/Payment";
 
 export const authenticationRoutePaths = [
