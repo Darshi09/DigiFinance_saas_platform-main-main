@@ -1,77 +1,87 @@
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Link } from "react-router-dom";
+import { PROTECTED_ROUTES } from "@/routes/common/routePath";
 
-const Billing = () => {
+
+const plans = [
+  {
+    name: "Basic",
+    price: "$9/month",
+    description: "Best for individuals just getting started.",
+    features: ["Access to core features", "Email support", "1 user"],
+  },
+  {
+    name: "Pro",
+    price: "$29/month",
+    description: "Perfect for growing teams and small businesses.",
+    features: [
+      "Everything in Basic",
+      "Advanced analytics",
+      "Priority support",
+      "Up to 5 users",
+    ],
+  },
+  {
+    name: "Enterprise",
+    price: "$99/month",
+    description: "For organizations that need full control & support.",
+    features: [
+      "Everything in Pro",
+      "Dedicated account manager",
+      "Custom integrations",
+      "Unlimited users",
+    ],
+  },
+]
+
+const SubscriptionPlans = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {plans.map((plan) => (
+        <Card
+          key={plan.name}
+          className="shadow-sm hover:shadow-lg transition rounded-2xl border"
+        >
+          <CardContent className="p-6 flex flex-col h-full">
+            <h2 className="text-lg font-semibold mb-1">{plan.name}</h2>
+            <p className="text-2xl font-bold text-blue-600 mb-2">
+              {plan.price}
+            </p>
+            <p className="text-sm text-muted-foreground mb-4">
+              {plan.description}
+            </p>
+            <ul className="flex-1 mb-6 space-y-2">
+              {plan.features.map((feature, i) => (
+                <li key={i} className="text-sm text-gray-700">
+                  ✅ {feature}
+                </li>
+              ))}
+            </ul>
+            <Link to={PROTECTED_ROUTES.SETTINGS_PAYMENT} className="w-full mt-auto">
+              <Button className="w-full">Subscribe</Button>
+            </Link>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
+const Subscription = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">Billing</h3>
+        <h3 className="text-lg font-medium">Subscription</h3>
         <p className="text-sm text-muted-foreground">
-          Manage your subscription and billing information
+          Choose a plan that fits your needs. You can upgrade or downgrade anytime.
         </p>
       </div>
       <Separator />
-
-      <div className="w-full">
-        {/* Current Plan */}
-        {/* Upgrade Options */}
-        <div className="mt-0">
-          <h1 className="text-lg font-medium mb-2">Support Us</h1>
-          <p className="text-base mb-2">
-            The Billing feature is part of the <strong>extended version</strong>{" "}
-            of this project. It took <strong>weeks and months</strong> to
-            design, build, and refine.
-          </p>
-
-          <p className="text-base mb-2">
-            By supporting us, you’ll unlock premium billing features including:
-          </p>
-
-          <ul className="list-disc pl-5 text-base mb-2">
-            <li>
-              <strong>Free Trial + Stripe Subscriptions</strong>
-            </li>
-            <li>
-              <strong>Monthly & Yearly Plans</strong> built-in
-            </li>
-            <li>
-              <strong>Switch between plans</strong> (monthly ↔ yearly)
-            </li>
-            <li>
-              <strong>Manage & Cancel Subscriptions</strong> anytime
-            </li>
-            <li>
-              <strong>Step-by-step Setup Video</strong>
-            </li>
-            <li>
-              <strong>Full Source Code</strong>
-            </li>
-            <li>
-              <strong>Production-Ready Deployment</strong>
-            </li>
-          </ul>
-
-          <p className="text-base mb-2">
-            Your support helps us keep building free, high-quality projects for
-            the community.
-          </p>
-
-          <p className="text-base font-medium">
-            🔓 <span className="text-green-600">Get it here:</span>
-            <a
-              className="text-blue-500 underline ml-1"
-              href="https://tinyurl.com/extended-stripe-integration"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Click Here
-            </a>
-          </p>
-          <br />
-          <br />
-        </div>
-      </div>
+      <SubscriptionPlans />
     </div>
-  );
-};
+  )
+}
 
-export default Billing;
+export default Subscription
