@@ -8,13 +8,13 @@ import { PROTECTED_ROUTES } from "@/routes/common/routePath";
 const plans = [
   {
     name: "Basic",
-    price: "$9/month",
+    price: "₹9/month",
     description: "Best for individuals just getting started.",
     features: ["Access to core features", "Email support", "1 user"],
   },
   {
     name: "Pro",
-    price: "$29/month",
+    price: "₹29/month",
     description: "Perfect for growing teams and small businesses.",
     features: [
       "Everything in Basic",
@@ -25,7 +25,7 @@ const plans = [
   },
   {
     name: "Enterprise",
-    price: "$99/month",
+    price: "₹99/month",
     description: "For organizations that need full control & support.",
     features: [
       "Everything in Pro",
@@ -59,9 +59,14 @@ const SubscriptionPlans = () => {
                 </li>
               ))}
             </ul>
-            <Link to={PROTECTED_ROUTES.SETTINGS_PAYMENT} className="w-full mt-auto">
+            <Link
+              to={PROTECTED_ROUTES.SETTINGS_PAYMENT}
+              state={{ plan }}
+              className="w-full mt-auto"
+            >
               <Button className="w-full">Subscribe</Button>
             </Link>
+
           </CardContent>
         </Card>
       ))}
