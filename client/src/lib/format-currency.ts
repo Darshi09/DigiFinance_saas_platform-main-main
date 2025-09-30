@@ -9,7 +9,7 @@ export const formatCurrency = (
   } = {}
 ): string => {
   const { 
-    currency = 'INR',   // ✅ Default currency set to INR
+    currency = 'INR',   
     decimalPlaces = 2, 
     compact = false, 
     showSign = false, 
@@ -18,7 +18,7 @@ export const formatCurrency = (
 
   const displayValue = isExpense ? -Math.abs(value) : value;
 
-  return new Intl.NumberFormat('en-IN', {   // ✅ Indian formatting style
+  return new Intl.NumberFormat('en-IN', {   
     style: 'currency',
     currency,
     minimumFractionDigits: decimalPlaces,
